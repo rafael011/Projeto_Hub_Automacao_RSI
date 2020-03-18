@@ -1,4 +1,4 @@
-package br.com.rsi.hub.automacao;
+package br.com.rsi.hub.automacao.tdd;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,8 +16,8 @@ public class PO_PaginadeCadastro {
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//a[@class='create-new-account ng-scope']")).click();
 
-		driver.findElement(By.name("usernameRegisterPage")).sendKeys("rafagygyugu");
-		driver.findElement(By.name("emailRegisterPage")).sendKeys("rgc.tehghfuy@gmail.com");
+		driver.findElement(By.name("usernameRegisterPage")).sendKeys("rafael10");
+		driver.findElement(By.name("emailRegisterPage")).sendKeys("rgc.test101@gmail.com");
 		driver.findElement(By.name("passwordRegisterPage")).sendKeys("Rafa123");
 		driver.findElement(By.name("confirm_passwordRegisterPage")).sendKeys("Rafa123");
 

@@ -1,18 +1,12 @@
-package br.com.rsi.hub.automacao;
+package br.com.rsi.hub.automacao.tdd;
 
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
+import static org.junit.Assert.assertEquals;
 import org.junit.After;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 
 public class TesteLogin {
 	private WebDriver driver;	
@@ -20,7 +14,7 @@ public class TesteLogin {
 	@Before
 	public void inicializar() {
 		PO_Web in = new PO_Web();
-		driver = in.inicializarChorme();
+		driver = in.inicializarNavegador();
 	}
 	@After
 	public void finalizar() {

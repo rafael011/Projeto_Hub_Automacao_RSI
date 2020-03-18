@@ -1,15 +1,12 @@
-package br.com.rsi.hub.automacao;
+package br.com.rsi.hub.automacao.tdd;
 
-import java.util.concurrent.TimeUnit;
+import static org.junit.Assert.assertEquals;
 import org.junit.After;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class TesteCadastro {
 	private WebDriver driver;
@@ -17,7 +14,7 @@ public class TesteCadastro {
 	@Before
 	public void inicializar() {
 		PO_Web in = new PO_Web();
-		driver = in.inicializarChorme();
+		driver = in.inicializarNavegador();
 	}
 
 	@After
@@ -29,6 +26,10 @@ public class TesteCadastro {
 	@Test
 	public void TesteCadastroSucesso() throws InterruptedException {
 		new PO_PaginadeCadastro(driver).PreenchendoCamposCadastroComSucesso();
+		
+		Thread.sleep(1000);
+		WebElement validacao = driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']"));
+		assertEquals("rafael10", validacao.getText());
 	}
 
 	@Test
