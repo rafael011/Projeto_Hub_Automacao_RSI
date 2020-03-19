@@ -19,7 +19,7 @@ public class TesteCadastro {
 
 	@After
 	public void finalizar() throws InterruptedException {
-		Thread.sleep(4000);
+		Thread.sleep(4000);	
 		driver.quit();
 	}
 

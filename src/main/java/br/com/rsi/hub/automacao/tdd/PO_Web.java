@@ -14,7 +14,7 @@ public class PO_Web {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://www.advantageonlineshopping.com/#/");
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		return driver;
 	}
 }
