@@ -27,7 +27,7 @@ public class PO_PaginadeLogin {
 		return driver.findElement(By.id("signInResultMessage")).getText();
 	}
 
-	public WebDriver LoginComSucesso() throws InterruptedException {
+	public WebDriver LoginComSucesso(){
 		driver.findElement(By.id("menuUserSVGPath")).click(); // Clicando no botão de acesso de usuários OK
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.name("username")).sendKeys("rafael05");
@@ -37,7 +37,7 @@ public class PO_PaginadeLogin {
 
 	}
 
-	public WebDriver LoginSemSucesso() throws InterruptedException {
+	public WebDriver LoginSemSucesso() {
 		driver.findElement(By.id("menuUserSVGPath")).click(); // Clicando no botão de acesso de usuários OK
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.findElement(By.name("username")).sendKeys("rafael");

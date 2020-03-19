@@ -1,20 +1,13 @@
 package br.com.rsi.hub.automacao.tdd;
 
 import static org.junit.Assert.assertEquals;
-
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TesteLogin {
 	private WebDriver driver;	
@@ -31,7 +24,7 @@ public class TesteLogin {
 
 	
 	@Test
-	public void TesteLoginPositivo() throws InterruptedException {
+	public void TesteLoginPositivo(){
 		new PO_PaginadeLogin(driver).LoginComSucesso();
 		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
 		
@@ -41,7 +34,7 @@ public class TesteLogin {
 
 	
 	@Test
-	public void TesteLoginNegativo() throws InterruptedException{
+	public void TesteLoginNegativo(){
 		new PO_PaginadeLogin(driver).LoginSemSucesso();	 
 		new PO_PaginadeLogin(driver).EsperarValidacaoMsgErroLogin();
 		

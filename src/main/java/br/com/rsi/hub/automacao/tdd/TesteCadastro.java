@@ -1,6 +1,9 @@
 package br.com.rsi.hub.automacao.tdd;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,16 +27,16 @@ public class TesteCadastro {
 	}
 
 	@Test
-	public void TesteCadastroSucesso() throws InterruptedException {
+	public void TesteCadastroPOsitivo() throws InterruptedException {
 		new PO_PaginadeCadastro(driver).PreenchendoCamposCadastroComSucesso();
 		
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		WebElement validacao = driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']"));
-		assertEquals("rafael10", validacao.getText());
+		assertEquals("rafael15", validacao.getText());
 	}
 
 	@Test
-	public void TesteCadastroSemSucesso() throws InterruptedException {
+	public void TesteCadastroNegativo() throws InterruptedException {
 		new PO_PaginadeCadastro(driver).PreenchendoCamposCadastroSemSucesso();
 
 		Thread.sleep(1000);
