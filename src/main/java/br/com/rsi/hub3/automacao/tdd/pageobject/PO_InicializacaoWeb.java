@@ -1,11 +1,11 @@
-package br.com.rsi.hub.automacao.tdd;
+package br.com.rsi.hub3.automacao.tdd.pageobject;
 
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class PO_Web {
+public class PO_InicializacaoWeb {
 	private WebDriver driver;
 	
 	public WebDriver inicializarNavegador() {

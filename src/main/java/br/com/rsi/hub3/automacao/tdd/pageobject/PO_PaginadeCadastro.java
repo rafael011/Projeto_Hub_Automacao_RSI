@@ -1,4 +1,4 @@
-package br.com.rsi.hub.automacao.tdd;
+package br.com.rsi.hub3.automacao.tdd.pageobject;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class PO_PaginadeCadastro {
 	private WebDriver driver;
-	private WebElement validacao;
+
 	
 	
 	public PO_PaginadeCadastro(WebDriver driver) {
@@ -22,8 +22,7 @@ public class PO_PaginadeCadastro {
 	public WebDriver PreenchendoCamposCadastroComSucesso() throws InterruptedException {
 		driver.findElement(By.id("menuUserLink")).click();
 		Thread.sleep(5000);
-		//EsperarValidacaoCadastro(validacao);
-		driver.findElement(By.xpath("//a[@class='create-new-account ng-scope']")).click();
+		//EsperarValidacaoCadastro();
 		driver.findElement(By.xpath("//a[@class='create-new-account ng-scope']")).click();
 
 		driver.findElement(By.name("usernameRegisterPage")).sendKeys("rafael15");
@@ -36,10 +35,10 @@ public class PO_PaginadeCadastro {
 		driver.findElement(By.name("phone_numberRegisterPage")).sendKeys("11999990000");
 
 		Thread.sleep(3000);
-		//EsperarValidacaoCadastro(validacao);
+		//EsperarValidacaoCadastro();
 		Select combobox = new Select(driver.findElement(By.name("countryListboxRegisterPage")));
 		Thread.sleep(2000);
-		//EsperarValidacaoCadastro(validacao);
+		//EsperarValidacaoCadastro();
 		combobox.selectByVisibleText("Brazil");
 
 		driver.findElement(By.name("cityRegisterPage")).sendKeys("Sao Paulo");
@@ -80,15 +79,13 @@ public class PO_PaginadeCadastro {
 	}
 	
 	
-	public FluentWait EsperarValidacaoCadastro(WebElement validacao) throws InterruptedException {
-		//Thread.sleep(5000);
-		//driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+	public String EsperarValidacaoCadastro() throws InterruptedException {
 		FluentWait wait = new FluentWait(driver);
-		wait.withTimeout(7, TimeUnit.SECONDS); 
+		wait.withTimeout(10, TimeUnit.SECONDS); 
 		wait.pollingEvery(1, TimeUnit.SECONDS); 
 		wait.ignoring(NoSuchElementException.class);
-		validacao = driver.findElement(By.xpath("//a[@class='create-new-account ng-scope']"));
+		WebElement validacao = driver.findElement(By.xpath("//a[@class='create-new-account ng-scope']"));
 		wait.until(ExpectedConditions.textToBePresentInElement(validacao, "CREATE NEW ACCOUNT")); 
-		return wait;
+		return driver.findElement(By.xpath("//a[@class='create-new-account ng-scope']")).getText();
 	}
 }

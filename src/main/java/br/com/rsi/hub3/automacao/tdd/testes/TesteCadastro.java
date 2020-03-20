@@ -1,4 +1,4 @@
-package br.com.rsi.hub.automacao.tdd;
+package br.com.rsi.hub3.automacao.tdd.testes;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,13 +10,14 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import br.com.rsi.hub3.automacao.tdd.pageobject.*;
 
 public class TesteCadastro {
 	private WebDriver driver;
 
 	@Before
 	public void inicializar() {
-		PO_Web in = new PO_Web();
+		PO_InicializacaoWeb in = new PO_InicializacaoWeb();
 		driver = in.inicializarNavegador();
 	}
 
@@ -27,7 +28,7 @@ public class TesteCadastro {
 	}
 
 	@Test
-	public void TesteCadastroPOsitivo() throws InterruptedException {
+	public void TesteCadastroPositivo() throws InterruptedException {
 		new PO_PaginadeCadastro(driver).PreenchendoCamposCadastroComSucesso();
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);

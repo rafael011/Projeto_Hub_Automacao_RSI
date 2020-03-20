@@ -1,4 +1,4 @@
-package br.com.rsi.hub.automacao.tdd;
+package br.com.rsi.hub3.automacao.tdd.pageobject;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,4 +1,4 @@
-package br.com.rsi.hub.automacao.tdd;
+package br.com.rsi.hub3.automacao.tdd.testes;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,13 +8,14 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import br.com.rsi.hub3.automacao.tdd.pageobject.*;
 
 public class TesteConsultaHome {
 private WebDriver driver;	
 	
 	@Before
 	public void inicializar() {
-		PO_Web in = new PO_Web();
+		PO_InicializacaoWeb in = new PO_InicializacaoWeb();
 		driver = in.inicializarNavegador();
 	}
 	@After
