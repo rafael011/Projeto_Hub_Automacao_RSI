@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import br.com.rsi.hub3.automacao.tdd.pageobject.*;
 
+
 public class TesteLogin {
 	private WebDriver driver;	
 	
@@ -20,19 +21,18 @@ public class TesteLogin {
 	}
 	@After
 	public void finalizar() {
-		driver.quit();
+		//driver.quit();
 	}
 
 	
 	@Test
-	public void TesteLoginPositivo(){
+	public void TesteLoginPositivo() throws Exception{
 		new PO_PaginadeLogin(driver).LoginComSucesso();
 		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
 		
 		WebElement validacao = driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']"));
 		assertEquals("rafael05", validacao.getText());
 	}
-
 	
 	@Test
 	public void TesteLoginNegativo(){

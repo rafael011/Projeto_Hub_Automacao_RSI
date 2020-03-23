@@ -1,17 +1,22 @@
 package br.com.rsi.hub3.automacao.tdd.pageobject;
 
-import java.util.concurrent.TimeUnit;
+import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import br.com.rsi.hub3.automacao.excel.*;
 
 public class PO_PaginadeLogin {
 	private WebDriver driver;
 	private WebElement validacao;
+	private ReadExcelFile readFile;
 
 	public PO_PaginadeLogin(WebDriver driver) {
 		this.driver = driver;
@@ -27,19 +32,20 @@ public class PO_PaginadeLogin {
 		return driver.findElement(By.id("signInResultMessage")).getText();
 	}
 
-	public WebDriver LoginComSucesso(){
+	public WebDriver LoginComSucesso() throws Exception{
 		driver.findElement(By.id("menuUserSVGPath")).click(); // Clicando no botão de acesso de usuários OK
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		driver.findElement(By.name("username")).sendKeys("rafael05");
-		driver.findElement(By.name("password")).sendKeys("Rafa123");
+		
+		String filepath = "src\\test\\resources\\massa.xlsx";
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.findElement(By.name("username")).sendKeys(readFile.getCellValue(filepath, "Planilha1", 0, 0));
+		driver.findElement(By.name("password")).sendKeys(readFile.getCellValue(filepath, "Planilha1", 1, 0));
 		driver.findElement(By.xpath("/html/body/login-modal/div/div/div[3]/sec-form/sec-sender/button")).click();
 		return driver;
-
 	}
 
 	public WebDriver LoginSemSucesso() {
 		driver.findElement(By.id("menuUserSVGPath")).click(); // Clicando no botão de acesso de usuários OK
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.name("username")).sendKeys("rafael");
 		driver.findElement(By.name("password")).sendKeys("senhaErrada");
 		driver.findElement(By.xpath("/html/body/login-modal/div/div/div[3]/sec-form/sec-sender/button")).click();
