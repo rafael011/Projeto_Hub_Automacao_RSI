@@ -10,12 +10,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 
-public class PO_PaginadeCadastro {
+public class PageObjectCadastro {
 	private WebDriver driver;
 
 	
 	
-	public PO_PaginadeCadastro(WebDriver driver) {
+	public PageObjectCadastro(WebDriver driver) {
 		this.driver = driver;
 	}
 	

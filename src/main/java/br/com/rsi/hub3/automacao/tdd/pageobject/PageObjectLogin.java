@@ -1,24 +1,20 @@
 package br.com.rsi.hub3.automacao.tdd.pageobject;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import br.com.rsi.hub3.automacao.excel.*;
 
-public class PO_PaginadeLogin {
+import br.com.rsi.hub3.automacao.tdd.massadados.*;
+
+public class PageObjectLogin {
 	private WebDriver driver;
 	private WebElement validacao;
-	private ReadExcelFile readFile;
 
-	public PO_PaginadeLogin(WebDriver driver) {
+	public PageObjectLogin(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -33,7 +29,7 @@ public class PO_PaginadeLogin {
 	}
 	
 	public void preencherLoginComExcel() throws Exception{
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
 		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Planilha1");
 		int linha=0, coluna=0;
 		String login = ExcelUtils.getCellData(linha, coluna);
@@ -41,7 +37,7 @@ public class PO_PaginadeLogin {
 		linha=1;
 		String senha = ExcelUtils.getCellData(linha, coluna);
 		driver.findElement(By.name("password")).sendKeys(senha);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
 	}
 
 	public WebDriver LoginComSucesso() throws Exception{

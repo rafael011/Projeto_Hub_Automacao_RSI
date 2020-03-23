@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import br.com.rsi.hub3.automacao.tdd.inicializacao.InicializacaoWeb;
 import br.com.rsi.hub3.automacao.tdd.pageobject.*;
 
 public class TesteCadastro {
@@ -17,7 +19,7 @@ public class TesteCadastro {
 
 	@Before
 	public void inicializar() {
-		PO_InicializacaoWeb in = new PO_InicializacaoWeb();
+		InicializacaoWeb in = new InicializacaoWeb();
 		driver = in.inicializarNavegador();
 	}
 
@@ -29,7 +31,7 @@ public class TesteCadastro {
 
 	@Test
 	public void TesteCadastroPositivo() throws InterruptedException {
-		new PO_PaginadeCadastro(driver).PreenchendoCamposCadastroComSucesso();
+		new PageObjectCadastro(driver).PreenchendoCamposCadastroComSucesso();
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		WebElement validacao = driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']"));
@@ -38,7 +40,7 @@ public class TesteCadastro {
 
 	@Test
 	public void TesteCadastroNegativo() throws InterruptedException {
-		new PO_PaginadeCadastro(driver).PreenchendoCamposCadastroSemSucesso();
+		new PageObjectCadastro(driver).PreenchendoCamposCadastroSemSucesso();
 
 		Thread.sleep(1000);
 		WebElement validacao = driver.findElement(By.xpath("//*[@id=\"registerPage\"]/article/sec-form/div[2]/label[1]"));

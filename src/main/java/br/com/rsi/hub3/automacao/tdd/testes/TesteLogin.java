@@ -1,14 +1,15 @@
 package br.com.rsi.hub3.automacao.tdd.testes;
 
 import static org.junit.Assert.assertEquals;
-import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import br.com.rsi.hub3.automacao.tdd.pageobject.*;
+
+import br.com.rsi.hub3.automacao.tdd.inicializacao.InicializacaoWeb;
+import br.com.rsi.hub3.automacao.tdd.pageobject.PageObjectLogin;
 
 
 public class TesteLogin {
@@ -16,7 +17,7 @@ public class TesteLogin {
 	
 	@Before
 	public void inicializar() {
-		PO_InicializacaoWeb in = new PO_InicializacaoWeb();
+		InicializacaoWeb in = new InicializacaoWeb();
 		driver = in.inicializarNavegador();
 	}
 	@After
@@ -27,7 +28,7 @@ public class TesteLogin {
 	
 	@Test
 	public void TesteLoginPositivo() throws Exception{
-		new PO_PaginadeLogin(driver).LoginComSucesso();
+		new PageObjectLogin(driver).LoginComSucesso();
 		
 		WebElement validacao = driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']"));
 		assertEquals("rafael05", validacao.getText());
@@ -35,8 +36,8 @@ public class TesteLogin {
 	
 	@Test
 	public void TesteLoginNegativo(){
-		new PO_PaginadeLogin(driver).LoginSemSucesso();	 
-		new PO_PaginadeLogin(driver).EsperarValidacaoMsgErroLogin();
+		new PageObjectLogin(driver).LoginSemSucesso();	 
+		new PageObjectLogin(driver).EsperarValidacaoMsgErroLogin();
 		
 		WebElement validacao = driver.findElement(By.id("signInResultMessage"));
 		assertEquals("Incorrect user name or password.", validacao.getText());

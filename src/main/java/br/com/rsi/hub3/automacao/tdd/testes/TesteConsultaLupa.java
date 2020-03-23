@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import br.com.rsi.hub3.automacao.tdd.inicializacao.InicializacaoWeb;
 import br.com.rsi.hub3.automacao.tdd.pageobject.*;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +18,7 @@ private WebDriver driver;
 	
 	@Before
 	public void inicializar() {
-		PO_InicializacaoWeb in = new PO_InicializacaoWeb();
+		InicializacaoWeb in = new InicializacaoWeb();
 		driver = in.inicializarNavegador();
 	}
 	@After
@@ -26,7 +28,7 @@ private WebDriver driver;
 	
 	@Test
 	public void TesteConsultaLupaPositivo() throws InterruptedException {
-		new PO_ConsultaLupa(driver).PesquisarProtudoLupaComSucesso();
+		new PageObjectConsultaLupa(driver).PesquisarProtudoLupaComSucesso();
 		
 		WebElement validacao = driver.findElement(By.xpath("//a[@class='select ng-binding']"));
 		assertEquals("HP CHROMEBOOK 14 G1(ENERGY STAR)", validacao.getText());
@@ -34,7 +36,7 @@ private WebDriver driver;
 	
 	@Test
 	public void TesteConsultaLupaNegativo() throws InterruptedException {
-		new PO_ConsultaLupa(driver).PesquisarProtudoLupaSemSucesso();
+		new PageObjectConsultaLupa(driver).PesquisarProtudoLupaSemSucesso();
 		
 		WebElement validacao = driver.findElement(By.xpath("//span[@class='ng-binding']"));
 		assertEquals("No results for \"DELL\"", validacao.getText());

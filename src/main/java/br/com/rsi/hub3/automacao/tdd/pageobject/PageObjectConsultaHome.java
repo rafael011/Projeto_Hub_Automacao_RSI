@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class PO_ConsultaHome {
+public class PageObjectConsultaHome {
 	private WebDriver driver;
 	
-	public PO_ConsultaHome(WebDriver driver) {
+	public PageObjectConsultaHome(WebDriver driver) {
 		this.driver = driver;
 	}
 	
