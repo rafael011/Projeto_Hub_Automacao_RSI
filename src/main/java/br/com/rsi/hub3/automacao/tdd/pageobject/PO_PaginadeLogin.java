@@ -31,15 +31,24 @@ public class PO_PaginadeLogin {
 		wait.until(ExpectedConditions.textToBePresentInElement(validacao, "Incorrect user name or password.")); // Esperar																										// espera)
 		return driver.findElement(By.id("signInResultMessage")).getText();
 	}
+	
+	public void preencherLoginComExcel() throws Exception{
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Planilha1");
+		int linha=0, coluna=0;
+		String login = ExcelUtils.getCellData(linha, coluna);
+		driver.findElement(By.name("username")).sendKeys(login);
+		linha=1;
+		String senha = ExcelUtils.getCellData(linha, coluna);
+		driver.findElement(By.name("password")).sendKeys(senha);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	}
 
 	public WebDriver LoginComSucesso() throws Exception{
 		driver.findElement(By.id("menuUserSVGPath")).click(); // Clicando no botão de acesso de usuários OK
-		
-		String filepath = "src\\test\\resources\\massa.xlsx";
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.name("username")).sendKeys(readFile.getCellValue(filepath, "Planilha1", 0, 0));
-		driver.findElement(By.name("password")).sendKeys(readFile.getCellValue(filepath, "Planilha1", 1, 0));
+		preencherLoginComExcel();	
 		driver.findElement(By.xpath("/html/body/login-modal/div/div/div[3]/sec-form/sec-sender/button")).click();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return driver;
 	}
 
