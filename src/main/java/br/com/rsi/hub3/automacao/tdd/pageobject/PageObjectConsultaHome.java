@@ -1,5 +1,6 @@
 package br.com.rsi.hub3.automacao.tdd.pageobject;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,14 +19,16 @@ public class PageObjectConsultaHome {
 		acao.moveToElement(opcaoTablets).perform();
 		driver.findElement(By.id("tabletsLink")).click();
 		return this.driver;
-		
 	}
 	
-	public WebDriver PesquisaHomeSemSucesso() {
-		return this.driver;
-		
-	}
-	
-	
+	public boolean PesquisaHomeSemSucesso(String produtoInexistente) {
+		List<WebElement> ListaElementosHome = driver.findElements(By.xpath("//span[@class='shop_now roboto-bold ng-binding']"));
+		for (WebElement elemento : ListaElementosHome) {
+			if (elemento.getText().contains(produtoInexistente)) {
+				return true;
+			}
+		}
+		return false;
+	}	
 
 }

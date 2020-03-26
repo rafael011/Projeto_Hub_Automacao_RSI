@@ -12,24 +12,32 @@ import br.com.rsi.hub3.automacao.tdd.massadados.*;
 
 public class PageObjectLogin {
 	private WebDriver driver;
-	private WebElement validacao;
-
+	//private WebElement validacao;
+	
 	public PageObjectLogin(WebDriver driver) {
 		this.driver = driver;
 	}
+	
+//	public WebElement getValidacao() {
+//		return this.validacao;
+//	}
+//	
+//	public void setValidacao(WebElement validacao) {
+//		this.validacao = validacao;
+//	}
 
 	public String EsperarValidacaoMsgErroLogin() {
 		FluentWait wait = new FluentWait(driver);
 		wait.withTimeout(15, TimeUnit.SECONDS); // Tempo total de espera até encontrar
 		wait.pollingEvery(1, TimeUnit.SECONDS); // De quanto em quanto verifica se o elemento já pode ser utilizado
 		wait.ignoring(NoSuchElementException.class); // ignorar tipos específicos de exceções enquanto aguarda
-		validacao = driver.findElement(By.id("signInResultMessage"));
-		wait.until(ExpectedConditions.textToBePresentInElement(validacao, "Incorrect user name or password.")); // Esperar																										// espera)
+		WebElement validacao = driver.findElement(By.id("signInResultMessage"));
+		wait.until(ExpectedConditions.textToBePresentInElement(validacao, "Incorrect user name or password.")); // Esperar o que?/Condição de espera)
 		return driver.findElement(By.id("signInResultMessage")).getText();
 	}
 	
 	public void preencherLoginComExcel() throws Exception{
-		driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Planilha1");
 		int linha=0, coluna=0;
 		String login = ExcelUtils.getCellData(linha, coluna);
@@ -37,7 +45,7 @@ public class PageObjectLogin {
 		linha=1;
 		String senha = ExcelUtils.getCellData(linha, coluna);
 		driver.findElement(By.name("password")).sendKeys(senha);
-		driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	public WebDriver LoginComSucesso() throws Exception{

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="20327" started-at="2020-03-26T12:10:46Z" finished-at="2020-03-26T12:11:06Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="20327" started-at="2020-03-26T12:10:46Z" finished-at="2020-03-26T12:11:06Z">
+      <class name="br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaHome">
+        <test-method status="PASS" signature="inicializar()[pri:0, instance:br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaHome@21507a04]" name="inicializar" is-config="true" duration-ms="8543" started-at="2020-03-26T09:10:46Z" finished-at="2020-03-26T09:10:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- inicializar -->
+        <test-method status="PASS" signature="TesteConsultaHomeNegativo()[pri:0, instance:br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaHome@21507a04]" name="TesteConsultaHomeNegativo" duration-ms="107" started-at="2020-03-26T09:10:54Z" finished-at="2020-03-26T09:10:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TesteConsultaHomeNegativo -->
+        <test-method status="PASS" signature="finalizar()[pri:0, instance:br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaHome@21507a04]" name="finalizar" is-config="true" duration-ms="932" started-at="2020-03-26T09:10:54Z" finished-at="2020-03-26T09:10:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalizar -->
+        <test-method status="PASS" signature="inicializar()[pri:0, instance:br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaHome@21507a04]" name="inicializar" is-config="true" duration-ms="7844" started-at="2020-03-26T09:10:55Z" finished-at="2020-03-26T09:11:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- inicializar -->
+        <test-method status="PASS" signature="TesteConsultaHomePositivo()[pri:0, instance:br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaHome@21507a04]" name="TesteConsultaHomePositivo" duration-ms="2125" started-at="2020-03-26T09:11:03Z" finished-at="2020-03-26T09:11:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TesteConsultaHomePositivo -->
+        <test-method status="PASS" signature="finalizar()[pri:0, instance:br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaHome@21507a04]" name="finalizar" is-config="true" duration-ms="762" started-at="2020-03-26T09:11:05Z" finished-at="2020-03-26T09:11:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalizar -->
+      </class> <!-- br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaHome -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
