@@ -1,11 +1,9 @@
 package br.com.rsi.hub3.automacao.tdd.testes;
 
-//import org.junit.After;
-//import org.junit.Before;
-//import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
@@ -25,7 +23,8 @@ public class TesteCadastro {
 
 	@AfterMethod
 	public void finalizar() throws InterruptedException {
-		Thread.sleep(4000);	
+		JavascriptExecutor javaScriptExecutor= (JavascriptExecutor) driver;
+        javaScriptExecutor.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 4000);");
 		driver.quit();
 	}
 
@@ -35,7 +34,7 @@ public class TesteCadastro {
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		WebElement validacao = driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']"));
-		assertEquals("rafael15", validacao.getText());
+		assertEquals("rafael199", validacao.getText());
 	}
 
 	@Test

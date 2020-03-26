@@ -12,19 +12,10 @@ import br.com.rsi.hub3.automacao.tdd.massadados.*;
 
 public class PageObjectLogin {
 	private WebDriver driver;
-	//private WebElement validacao;
 	
 	public PageObjectLogin(WebDriver driver) {
 		this.driver = driver;
 	}
-	
-//	public WebElement getValidacao() {
-//		return this.validacao;
-//	}
-//	
-//	public void setValidacao(WebElement validacao) {
-//		this.validacao = validacao;
-//	}
 
 	public String EsperarValidacaoMsgErroLogin() {
 		FluentWait wait = new FluentWait(driver);
@@ -34,11 +25,16 @@ public class PageObjectLogin {
 		WebElement validacao = driver.findElement(By.id("signInResultMessage"));
 		wait.until(ExpectedConditions.textToBePresentInElement(validacao, "Incorrect user name or password.")); // Esperar o que?/Condição de espera)
 		return driver.findElement(By.id("signInResultMessage")).getText();
+		
+		/*
+		JavascriptExecutor javaScriptExecutor= (JavascriptExecutor) driver;
+        javaScriptExecutor.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 1000);");
+		 */
 	}
 	
 	public void preencherLoginComExcel() throws Exception{
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData, "Planilha1");
+		ExcelUtils.setExcelFile(ExcelUtils.Path_TestData + ExcelUtils.File_TestData, "Planilha1");
 		int linha=0, coluna=0;
 		String login = ExcelUtils.getCellData(linha, coluna);
 		driver.findElement(By.name("username")).sendKeys(login);

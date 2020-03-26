@@ -2,18 +2,14 @@ package br.com.rsi.hub3.automacao.tdd.testes;
 
 import static org.junit.Assert.assertEquals;
 import br.com.rsi.hub3.automacao.tdd.reports.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentTest;
-
 import br.com.rsi.hub3.automacao.tdd.inicializacao.InicializacaoWeb;
 import br.com.rsi.hub3.automacao.tdd.pageobject.PageObjectLogin;
 
@@ -23,18 +19,18 @@ public class TesteLogin {
 	private WebDriver driver;
 	private ExtentTest test;
 	
-//	@BeforeTest
+//	@BeforeSuite
 //	public void setConfigReport() {
 //		//setando o reporte 
 //		ReportConfig.setReport();
 //	}
 	
-	@Before
+	@BeforeMethod
 	public void inicializar() {
 		InicializacaoWeb in = new InicializacaoWeb();
 		driver = in.inicializarNavegador();
 	}
-	@After
+	@AfterMethod
 	public void finalizar() {
 		driver.quit();
 	}
