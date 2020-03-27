@@ -13,7 +13,7 @@ public class ExcelUtils {
 	private static XSSFWorkbook ExcelWBook;
 	private static XSSFCell Cell;
 	private static XSSFRow Row;
-	public static final String Path_TestData = "src\\test\\resources\\";
+	public static final String Path_TestData = "src\\test\\resources\\Excel\\";
     public static final String File_TestData = "massa.xlsx";
 	
 	public static void setExcelFile(String caminhoArquivo, String nomeDoArquivo) throws Exception {

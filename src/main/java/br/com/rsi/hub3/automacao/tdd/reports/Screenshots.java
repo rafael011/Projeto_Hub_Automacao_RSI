@@ -12,7 +12,7 @@ public class Screenshots {
 	public static String getScreenshot(WebDriver driver, String nomeScreenshot) {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File src = ts.getScreenshotAs(OutputType.FILE);
-		String caminhoScreenshot = System.getProperty("user.dir") + "/Screenshots/" + nomeScreenshot + ".png";	
+		String caminhoScreenshot = System.getProperty("user.dir") + "./src/test/resources/Screenshots/" + nomeScreenshot + ".png";	
 		File caminho = new File(caminhoScreenshot);
 		try {
 			FileUtils.copyFile(src, caminho);

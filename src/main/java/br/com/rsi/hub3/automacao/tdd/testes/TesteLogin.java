@@ -29,9 +29,9 @@ public class TesteLogin {
 	
 	
 	@BeforeSuite
-	public void setReport() {
+	public void iniciarReport() {
 		//setando o reporte 
-		ReportConfig.setReport("Login");
+		ReportConfig.iniciarReport("Login");
 	}
 	
 	@BeforeMethod
