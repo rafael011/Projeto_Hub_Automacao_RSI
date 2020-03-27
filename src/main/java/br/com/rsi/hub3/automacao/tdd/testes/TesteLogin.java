@@ -1,59 +1,78 @@
 package br.com.rsi.hub3.automacao.tdd.testes;
 
 import static org.junit.Assert.assertEquals;
-import br.com.rsi.hub3.automacao.tdd.reports.*;
+
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentTest;
-import br.com.rsi.hub3.automacao.tdd.inicializacao.InicializacaoWeb;
+import br.com.rsi.hub3.automacao.tdd.inicializacao.DriverFactory;
+import br.com.rsi.hub3.automacao.tdd.massadados.ExcelUtils;
+import br.com.rsi.hub3.automacao.tdd.massadados.MassaDeDados;
 import br.com.rsi.hub3.automacao.tdd.pageobject.PageObjectLogin;
-
-
+import br.com.rsi.hub3.automacao.tdd.reports.ReportConfig;
 
 public class TesteLogin {
 	private WebDriver driver;
-	private ExtentTest test;
+	private ExtentTest teste;
+	private String nomeTeste;
+	private MassaDeDados excel;
+	private DriverFactory in = new DriverFactory();
 	
-//	@BeforeSuite
-//	public void setConfigReport() {
-//		//setando o reporte 
-//		ReportConfig.setReport();
-//	}
+	
+	@BeforeSuite
+	public void setReport() {
+		//setando o reporte 
+		ReportConfig.setReport("Login");
+	}
 	
 	@BeforeMethod
-	public void inicializar() {
-		InicializacaoWeb in = new InicializacaoWeb();
+	public void inicializar() throws Exception {
 		driver = in.inicializarNavegador();
+		excel = new MassaDeDados();
 	}
 	@AfterMethod
-	public void finalizar() {
-		driver.quit();
+	public void finalizar(ITestResult result) throws IOException{
+		teste = ReportConfig.criarTeste(nomeTeste);
+		ReportConfig.realtorioReport(teste, result, driver);
+		driver = in.fecharNavegador();
+	}
+	
+	@AfterSuite
+	public void finalizarReport() {
+		ReportConfig.encerrarReport();
 	}
 
 	
 	@Test
 	public void TesteLoginPositivo() throws Exception{
-		new PageObjectLogin(driver).LoginComSucesso();
-		
-		WebElement validacao = driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']"));
-		assertEquals("rafael05", validacao.getText());
-		
-		//definindo teste para o report
-		//test = ReportConfig.createTest("validarLogin");
+		nomeTeste = "Cenario de Teste Positivo";
+
+		PageObjectLogin login = new PageObjectLogin(driver);
+		login.clicarBotaoAcessoUsuarios();
+		login.preencherLoginComExcel(excel.getUsuario());
+		login.preencherSenhaComExcel(excel.getSenha());
+		login.clicarBotaoLogin();		
+		assertEquals("rafael14", login.validacaoLogin());
 	}
 	
 	@Test
-	public void TesteLoginNegativo(){
-		new PageObjectLogin(driver).LoginSemSucesso();	 
-		new PageObjectLogin(driver).EsperarValidacaoMsgErroLogin();
-		
-		WebElement validacao = driver.findElement(By.id("signInResultMessage"));
-		assertEquals("Incorrect user name or password.", validacao.getText());
+	public void TesteLoginNegativo() throws Exception{
+		nomeTeste = "Cenario de Teste Negativo";
+		PageObjectLogin login = new PageObjectLogin(driver);
+		login.clicarBotaoAcessoUsuarios();
+		login.preencherLoginComExcel(excel.getUsuarioInvalido());
+		login.preencherSenhaComExcel(excel.getSenhaInvalida());
+		login.clicarBotaoLogin();
+		assertEquals("Incorrect user name or password.", login.validacaoMensagemErro());
 	}
 
 }

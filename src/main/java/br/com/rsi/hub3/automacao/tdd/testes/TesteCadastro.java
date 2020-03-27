@@ -9,40 +9,68 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import br.com.rsi.hub3.automacao.tdd.inicializacao.InicializacaoWeb;
+import br.com.rsi.hub3.automacao.tdd.inicializacao.DriverFactory;
 import br.com.rsi.hub3.automacao.tdd.pageobject.*;
 
 public class TesteCadastro {
 	private WebDriver driver;
-
+	private DriverFactory in = new DriverFactory();
+	
 	@BeforeMethod
 	public void inicializar() {
-		InicializacaoWeb in = new InicializacaoWeb();
 		driver = in.inicializarNavegador();
 	}
 
 	@AfterMethod
 	public void finalizar() throws InterruptedException {
-		JavascriptExecutor javaScriptExecutor= (JavascriptExecutor) driver;
-        javaScriptExecutor.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 4000);");
-		driver.quit();
+		in.Esperar("2000");
+		driver = in.fecharNavegador();
 	}
 
 	@Test
 	public void TesteCadastroPositivo() throws InterruptedException {
-		new PageObjectCadastro(driver).PreenchendoCamposCadastroComSucesso();
+		PageObjectCadastro cadastro = new PageObjectCadastro(driver);
+		cadastro.clicarBotaoAcessoUsuarios();
+		cadastro.clicarBotaoCriarConta();
+		cadastro.preencherUsuario("rafael16");
+		cadastro.preencherEmail("rgc.test16@gmail.com");
+		cadastro.preencherSenha("Rafa123");
+		cadastro.preencherConfirmacaoSenha("Rafa123");
+		cadastro.preencherNome("Rafael");
+		cadastro.preencherSobrenome("Gomes");
+		cadastro.preencherTelefone("11999990000");
+		cadastro.selecionarPais("Brazil");
+		cadastro.preencherCidade("Sao Paulo");
+		cadastro.preencherEndereco("Rua Abcde, N 20");
+		cadastro.preencherEstado("SP");
+		cadastro.preencherCep("08455000");
+		cadastro.clicarOpcaoAceitarTermos();
+		cadastro.clicarBotaoRegistrar();
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		WebElement validacao = driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']"));
-		assertEquals("rafael199", validacao.getText());
+		assertEquals("rafael16", cadastro.validacao());
 	}
 
 	@Test
 	public void TesteCadastroNegativo() throws InterruptedException {
-		new PageObjectCadastro(driver).PreenchendoCamposCadastroSemSucesso();
+		PageObjectCadastro cadastro = new PageObjectCadastro(driver);
+		cadastro.clicarBotaoAcessoUsuarios();
+		cadastro.clicarBotaoCriarConta();
+		cadastro.preencherUsuario("rafael05");
+		cadastro.preencherEmail("rgc.teste1@gmail.com");
+		cadastro.preencherSenha("Rafa123");
+		cadastro.preencherConfirmacaoSenha("Rafa123");
+		cadastro.preencherNome("Rafael");
+		cadastro.preencherSobrenome("Gomes");
+		cadastro.preencherTelefone("11999990000");
+		cadastro.selecionarPais("Brazil");
+		cadastro.preencherCidade("Sao Paulo");
+		cadastro.preencherEndereco("Rua Abcde, N 20");
+		cadastro.preencherEstado("SP");
+		cadastro.preencherCep("08455000");
+		cadastro.clicarOpcaoAceitarTermos();
+		cadastro.clicarBotaoRegistrar();
 
-		Thread.sleep(1000);
-		WebElement validacao = driver.findElement(By.xpath("//*[@id=\"registerPage\"]/article/sec-form/div[2]/label[1]"));
-		assertEquals("User name already exists", validacao.getText());
+		assertEquals("User name already exists", cadastro.validacaoMensagemErro());
 	}
+	
 }

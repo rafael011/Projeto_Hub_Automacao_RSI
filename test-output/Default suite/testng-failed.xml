@@ -5,8 +5,8 @@
     <classes>
       <class name="br.com.rsi.hub3.automacao.tdd.testes.TesteCadastro">
         <methods>
-          <include name="TesteCadastroNegativo"/>
           <include name="finalizar"/>
+          <include name="TesteCadastroPositivo"/>
           <include name="inicializar"/>
         </methods>
       </class> <!-- br.com.rsi.hub3.automacao.tdd.testes.TesteCadastro -->

@@ -9,20 +9,16 @@ import org.openqa.selenium.WebDriver;
 
 public class Screenshots {
 
-	public static String getScreenshot(WebDriver driver, String nomeScreen) {
+	public static String getScreenshot(WebDriver driver, String nomeScreenshot) {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File src = ts.getScreenshotAs(OutputType.FILE);
-		String caminhoDoArquivo = System.getProperty("user.dir") + "/Screenshot/" + nomeScreen + ".png";
-		
-	
-		File destino = new File(caminhoDoArquivo);
-
+		String caminhoScreenshot = System.getProperty("user.dir") + "/Screenshots/" + nomeScreenshot + ".png";	
+		File caminho = new File(caminhoScreenshot);
 		try {
-			FileUtils.copyFile(src, destino);
+			FileUtils.copyFile(src, caminho);
 		} catch (IOException e) {
 			System.out.println(" O print falhou " + e.getMessage());
 		}
-
-		return caminhoDoArquivo;
+		return caminhoScreenshot;
 	}
 }

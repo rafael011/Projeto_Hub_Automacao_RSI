@@ -6,22 +6,22 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import br.com.rsi.hub3.automacao.tdd.inicializacao.InicializacaoWeb;
+import br.com.rsi.hub3.automacao.tdd.inicializacao.DriverFactory;
 import br.com.rsi.hub3.automacao.tdd.pageobject.*;
 import static org.junit.Assert.assertEquals;
 
 public class TesteConsultaLupa {
 	
-private WebDriver driver;	
+	private WebDriver driver;	
+	private DriverFactory in = new DriverFactory();
 	
 	@BeforeMethod
 	public void inicializar() {
-		InicializacaoWeb in = new InicializacaoWeb();
 		driver = in.inicializarNavegador();
 	}
 	@AfterMethod
 	public void finalizar() {
-		driver.quit();
+		driver = in.fecharNavegador();
 	}
 	
 	@Test

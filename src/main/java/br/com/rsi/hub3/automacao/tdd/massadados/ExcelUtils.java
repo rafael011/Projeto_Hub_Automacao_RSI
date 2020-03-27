@@ -16,19 +16,19 @@ public class ExcelUtils {
 	public static final String Path_TestData = "src\\test\\resources\\";
     public static final String File_TestData = "massa.xlsx";
 	
-	public static void setExcelFile(String Path, String SheetName) throws Exception {
+	public static void setExcelFile(String caminhoArquivo, String nomeDoArquivo) throws Exception {
 		try {
-			FileInputStream ExcelFile = new FileInputStream(Path);
+			FileInputStream ExcelFile = new FileInputStream(caminhoArquivo);
 			ExcelWBook = new XSSFWorkbook(ExcelFile);
-			ExcelWSheet = ExcelWBook.getSheet(SheetName);
+			ExcelWSheet = ExcelWBook.getSheet(nomeDoArquivo);
 		} catch (Exception e) {
 			throw (e);
 		}
 	}
 
-	public static String getCellData(int RowNum, int ColNum) throws Exception {
+	public static String getCellData(int numeroDaLinha, int numeroDaColuna) throws Exception {
 		try {
-			Cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
+			Cell = ExcelWSheet.getRow(numeroDaLinha).getCell(numeroDaColuna);
 			String CellData = Cell.getStringCellValue();
 			return CellData;
 		} catch (Exception e) {

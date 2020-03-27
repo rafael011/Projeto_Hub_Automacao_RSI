@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class InicializacaoWeb {
+public class DriverFactory {
 	private WebDriver driver;
 
 	public WebDriver inicializarNavegador() {
@@ -23,10 +23,15 @@ public class InicializacaoWeb {
 
 		return driver;
 	}
+	
+	public WebDriver fecharNavegador() {
+		driver.quit();
+		return driver;
+	}
 
-//	public void Esperar() {
-//		JavascriptExecutor javaScriptExecutor = (JavascriptExecutor) driver;
-//		javaScriptExecutor.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 6000);");
-//	}
+	public void Esperar(String tempo) {
+		JavascriptExecutor javaScriptExecutor= (JavascriptExecutor) driver;
+        javaScriptExecutor.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1],"+tempo+");");
+	}
 
 }
