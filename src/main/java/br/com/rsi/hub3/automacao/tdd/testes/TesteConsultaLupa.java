@@ -26,18 +26,23 @@ public class TesteConsultaLupa {
 	
 	@Test
 	public void TesteConsultaLupaPositivo() throws InterruptedException {
-		new PageObjectConsultaLupa(driver).PesquisarProtudoLupaComSucesso();
+		PageObjectConsultaLupa lupa = new PageObjectConsultaLupa(driver);
+		lupa.clicarBotaoLupa();
+		lupa.preencherPesquisaLupa("HP CHROMEBOOK 14 G1(ENERGY STAR)");
+		lupa.clicarProdutoPesquisaLupa();
 		
-		WebElement validacao = driver.findElement(By.xpath("//a[@class='select ng-binding']"));
-		assertEquals("HP CHROMEBOOK 14 G1(ENERGY STAR)", validacao.getText());
+		assertEquals("HP CHROMEBOOK 14 G1(ENERGY STAR)", lupa.validacao());
 	}
 	
 	@Test
 	public void TesteConsultaLupaNegativo() throws InterruptedException {
-		new PageObjectConsultaLupa(driver).PesquisarProtudoLupaSemSucesso();
+		PageObjectConsultaLupa lupa = new PageObjectConsultaLupa(driver);
+		lupa.clicarBotaoLupa();
+		lupa.preencherPesquisaInvalidaLupa("DELL");
+		lupa.clicarBotaoLupa();
+		lupa.clicarFecharLupa();
 		
-		WebElement validacao = driver.findElement(By.xpath("//span[@class='ng-binding']"));
-		assertEquals("No results for \"DELL\"", validacao.getText());
+		assertEquals("No results for \"DELL\"", lupa.validacaoPesquisaInvalida());
 	}
 	
 

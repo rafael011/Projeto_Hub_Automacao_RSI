@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="br.com.rsi.hub3.automacao.tdd.testes.TesteCadastro">
+      <class name="br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaLupa">
         <methods>
+          <include name="TesteConsultaLupaNegativo"/>
           <include name="finalizar"/>
-          <include name="TesteCadastroPositivo"/>
           <include name="inicializar"/>
         </methods>
-      </class> <!-- br.com.rsi.hub3.automacao.tdd.testes.TesteCadastro -->
+      </class> <!-- br.com.rsi.hub3.automacao.tdd.testes.TesteConsultaLupa -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

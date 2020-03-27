@@ -26,15 +26,15 @@ public class TesteConsultaHome {
 	
 	@Test
 	public void TesteConsultaHomePositivo() {
-		new PageObjectConsultaHome(driver).PesquisaHomeComSucesso();
+		PageObjectConsultaHome tab = new PageObjectConsultaHome(driver);
+		tab.clicarBotaoTablets();
 		
-		WebElement validacao = driver.findElement(By.xpath("//h1[@class='roboto-bold ng-binding']"));
-		assertEquals("TRAVEL CONFIDENTLY AND IN STYLE", validacao.getText());
+		assertEquals("TRAVEL CONFIDENTLY AND IN STYLE", tab.validacao());
 	}
 	
 	@Test
 	public void TesteConsultaHomeNegativo() {
-		Assert.assertFalse(new PageObjectConsultaHome(driver).PesquisaHomeSemSucesso("Smartphone"));
+		Assert.assertFalse(new PageObjectConsultaHome(driver).verificarBotaoInexistente("Smartphone"));
 	}
 
 }

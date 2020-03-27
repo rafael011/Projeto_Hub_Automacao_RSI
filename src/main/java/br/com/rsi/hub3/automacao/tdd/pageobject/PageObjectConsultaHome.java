@@ -13,15 +13,14 @@ public class PageObjectConsultaHome {
 		this.driver = driver;
 	}
 	
-	public WebDriver PesquisaHomeComSucesso() {
+	public void clicarBotaoTablets() {
 		Actions acao = new Actions(driver);
 		WebElement opcaoTablets = driver.findElement(By.id("tabletsTxt"));
 		acao.moveToElement(opcaoTablets).perform();
 		driver.findElement(By.id("tabletsLink")).click();
-		return this.driver;
 	}
 	
-	public boolean PesquisaHomeSemSucesso(String produtoInexistente) {
+	public boolean verificarBotaoInexistente(String produtoInexistente) {
 		List<WebElement> ListaElementosHome = driver.findElements(By.xpath("//span[@class='shop_now roboto-bold ng-binding']"));
 		for (WebElement elemento : ListaElementosHome) {
 			if (elemento.getText().contains(produtoInexistente)) {
@@ -30,5 +29,10 @@ public class PageObjectConsultaHome {
 		}
 		return false;
 	}	
+	
+	public String validacao() {
+		WebElement validacao = driver.findElement(By.xpath("//h1[@class='roboto-bold ng-binding']"));
+		return validacao.getText();
+	}
 
 }
