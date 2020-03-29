@@ -65,7 +65,7 @@ public class TesteConsultaLupa {
 		nomeTeste = "Cenario de Teste Negativo";
 		PageObjectConsultaLupa lupa = new PageObjectConsultaLupa(driver);
 		lupa.clicarBotaoLupa();
-		lupa.preencherPesquisaInvalidaLupa("DELL");
+		lupa.preencherPesquisaLupa("DELL");
 		lupa.clicarBotaoLupa();
 		lupa.clicarFecharLupa();
 		

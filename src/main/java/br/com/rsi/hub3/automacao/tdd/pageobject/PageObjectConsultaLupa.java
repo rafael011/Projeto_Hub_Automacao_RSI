@@ -34,11 +34,6 @@ public class PageObjectConsultaLupa {
 	public void clicarProdutoPesquisaLupa() {
 		driver.findElement(By.xpath("//p[contains(text(),'HP CHROMEBOOK 14 G1(ENERGY STAR)')]")).click();
 	}
-
-	public void preencherPesquisaInvalidaLupa(String produtoInexistente) {
-		driver.findElement(By.id("autoComplete")).sendKeys(produtoInexistente);
-		Esperar();
-	}
 	
 	public void clicarFecharLupa() {
 		driver.findElement(By.xpath("//div[@class='autoCompleteCover']//div//img")).click();
