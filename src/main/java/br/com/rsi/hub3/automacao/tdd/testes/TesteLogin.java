@@ -58,10 +58,10 @@ public class TesteLogin {
 
 		PageObjectLogin login = new PageObjectLogin(driver);
 		login.clicarBotaoAcessoUsuarios();
-		login.preencherLoginComExcel(excel.getUsuario());
-		login.preencherSenhaComExcel(excel.getSenha());
+		login.preencherLogin(excel.getUsuario());
+		login.preencherSenha(excel.getSenha());
 		login.clicarBotaoLogin();		
-		assertEquals("rafael14", login.validacaoLogin());
+		assertEquals("rafael05", login.validacaoLogin());
 	}
 	
 	@Test
@@ -69,8 +69,8 @@ public class TesteLogin {
 		nomeTeste = "Cenario de Teste Negativo";
 		PageObjectLogin login = new PageObjectLogin(driver);
 		login.clicarBotaoAcessoUsuarios();
-		login.preencherLoginComExcel(excel.getUsuarioInvalido());
-		login.preencherSenhaComExcel(excel.getSenhaInvalida());
+		login.preencherLogin(excel.getUsuarioInvalido());
+		login.preencherSenha(excel.getSenhaInvalida());
 		login.clicarBotaoLogin();
 		assertEquals("Incorrect user name or password.", login.validacaoMensagemErro());
 	}

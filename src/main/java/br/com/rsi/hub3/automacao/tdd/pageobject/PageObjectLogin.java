@@ -39,11 +39,11 @@ public class PageObjectLogin {
 		Esperar("5000");
 	}
 	
-	public void preencherLoginComExcel(String login) throws Exception {
+	public void preencherLogin(String login) throws Exception {
 		driver.findElement(By.name("username")).sendKeys(login);
 	}
 
-	public void preencherSenhaComExcel(String senha) throws Exception {
+	public void preencherSenha(String senha) throws Exception {
 		driver.findElement(By.name("password")).sendKeys(senha);
 	}
 

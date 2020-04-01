@@ -56,8 +56,8 @@ public class TesteCadastro {
 		PageObjectCadastro cadastro = new PageObjectCadastro(driver);
 		cadastro.clicarBotaoAcessoUsuarios();
 		cadastro.clicarBotaoCriarConta();
-		cadastro.preencherUsuario("rafael19");
-		cadastro.preencherEmail("rgc.test19@gmail.com");
+		cadastro.preencherUsuario("rafael01");
+		cadastro.preencherEmail("rgc.test01@gmail.com");
 		cadastro.preencherSenha("Rafa123");
 		cadastro.preencherConfirmacaoSenha("Rafa123");
 		cadastro.preencherNome("Rafael");
@@ -71,7 +71,7 @@ public class TesteCadastro {
 		cadastro.clicarOpcaoAceitarTermos();
 		cadastro.clicarBotaoRegistrar();
 		
-		assertEquals("rafael19", cadastro.validacao());
+		assertEquals("rafael01", cadastro.validacao());
 	}
 
 	@Test

@@ -3,15 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="br.com.rsi.hub3.automacao.tdd.testes.TesteCadastro">
+      <class name="br.com.rsi.hub3.automacao.tdd.testes.TesteLogin">
         <methods>
-          <include name="finalizar"/>
-          <include name="TesteCadastroPositivo"/>
-          <include name="finalizarReport"/>
+          <include name="TesteLoginPositivo"/>
           <include name="iniciarReport"/>
           <include name="inicializar"/>
+          <include name="finalizar"/>
         </methods>
-      </class> <!-- br.com.rsi.hub3.automacao.tdd.testes.TesteCadastro -->
+      </class> <!-- br.com.rsi.hub3.automacao.tdd.testes.TesteLogin -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
